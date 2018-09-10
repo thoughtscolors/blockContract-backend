@@ -5,17 +5,17 @@ exports.seed = function(knex, Promise) {
     .then(function () {
       // Inserts seed entries
       return knex('users').insert([
-        { id: 1,
+        {
           email: 'alborg.b@gmail.com',
           name: 'Brady',
           password: 'pass',
           pub_key: '0x23571754544Cc1a95d269B8D75bAFf4C17A8B223'},
-        { id: 2,
+        {
           email: 'test@gmail.com',
           name: 'Greg',
           password: 'pass',
           pub_key: '0xC8a013451768a24177926f6E27f938909A2C493E'},
-        { id: 3,
+        { 
           email: 'test@test.com',
           name: 'Nicki',
           password: 'pass',
