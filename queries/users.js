@@ -20,7 +20,7 @@ const getUserById = (id) => {
 
 const updateUser = (user) => {
   return knex('users')
-  .where({ id })
+  .where('id', user.id)
   .update(user)
   .returning('*')
 }
