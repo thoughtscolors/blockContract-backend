@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
-const socket = require('socket.io')(app)
+const http = require('http').createServer(app)
+const socket = require('socket.io').listen(http)
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
 const cors = require('cors')
@@ -9,15 +10,16 @@ require('dotenv').config()
 const port = process.env.PORT || 8101
 
 socket.on('connection', (client) => {
-  client.on('register', handleRegister)
-  client.on('join', handleJoin)
-  client.on('leave', handleLeave)
-  client.on('message', handleMessage)
-  client.on('chatrooms', handleGetChatrooms)
-  client.on('availableUsers', handleGetAvailableUsers)
+console.log('client connected...', client.id)
+  // client.on('register', handleRegister)
+  // client.on('join', handleJoin)
+  // client.on('leave', handleLeave)
+  // client.on('message', handleMessage)
+  // client.on('chatrooms', handleGetChatrooms)
+  // client.on('availableUsers', handleGetAvailableUsers)
   client.on('disconnect', () => {
     console.log('client disconnect:', client.id)
-    handleDisconnect()
+    // handleDisconnect()
   })
   client.on('error', (err) => {
     console.log('error from client:', client.id)
@@ -44,7 +46,7 @@ app.use((req, res, next) => {
 });
 
 if (process.env.NODE_ENV !== 'test') {
-  app.listen(port, () => {
+  http.listen(port, () => {
     console.log(`blockContract running on port: ${port}!`)
   });
 }
