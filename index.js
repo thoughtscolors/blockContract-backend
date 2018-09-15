@@ -16,7 +16,9 @@ console.log('client connected...', client.id)
   // client.on('register', handleRegister)
   // client.on('join', handleJoin)
   // client.on('leave', handleLeave)
-  // client.on('message', handleMessage)
+  client.on('message', (msg) => {
+    console.log('message:', msg)
+  })
   // client.on('chatrooms', handleGetChatrooms)
   // client.on('availableUsers', handleGetAvailableUsers)
   client.on('disconnect', () => {
