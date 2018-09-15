@@ -7,7 +7,9 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 require('dotenv').config()
 
+const socketPort = process.env.PORT || 8100
 const port = process.env.PORT || 8101
+
 
 socket.on('connection', (client) => {
 console.log('client connected...', client.id)
@@ -46,7 +48,13 @@ app.use((req, res, next) => {
 });
 
 if (process.env.NODE_ENV !== 'test') {
-  http.listen(port, () => {
+  http.listen(socketPort, () => {
+    console.log(`socket running on port: ${socketPort}!`)
+  });
+}
+
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(port, () => {
     console.log(`blockContract running on port: ${port}!`)
   });
 }
