@@ -18,6 +18,7 @@ console.log('client connected...', client.id)
   // client.on('leave', handleLeave)
   client.on('message', (msg) => {
     console.log('message:', msg)
+    socket.emit('message', msg)
   })
   // client.on('chatrooms', handleGetChatrooms)
   // client.on('availableUsers', handleGetAvailableUsers)
